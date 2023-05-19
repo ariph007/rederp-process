@@ -1,5 +1,6 @@
 package com.rise.process;
 
+import org.compiere.model.MAsset;
 import org.compiere.model.MProcessPara;
 import org.compiere.process.ProcessInfoParameter;
 import org.compiere.process.SvrProcess;
@@ -42,17 +43,18 @@ public class AssetTransfer extends SvrProcess{
 		if (p_M_Locator_ID == p_M_LocatorTo_ID)
 			throw new AdempiereUserError (Msg.getMsg(getCtx(), "LocatorFromToMustDiffer"));
 		
-		try {
-			MREDAssetTransfer transfer = new MREDAssetTransfer(getCtx(), 0, get_TrxName());
-			transfer.setA_Asset_ID(p_A_Asset_ID);
-			transfer.setM_Locator_ID(p_M_Locator_ID);
-			transfer.setM_LocatorTo_ID(p_M_LocatorTo_ID);
-			transfer.saveEx();
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		MREDAssetTransfer transfer = new MREDAssetTransfer(getCtx(), 0, get_TrxName());
+		transfer.setA_Asset_ID(p_A_Asset_ID);
+		transfer.setM_Locator_ID(p_M_Locator_ID);
+		transfer.setM_LocatorTo_ID(p_M_LocatorTo_ID);
+		transfer.saveEx();
 		
-		return "Asset Transfered";
+		
+		MAsset asset = new MAsset(null, p_A_Asset_ID, null);
+		final String assetName = asset.getName();
+		
+		final String msg = "Asset " + p_A_Asset_ID + " : " +assetName + " successful transfered";
+		return msg;
 	}
 
 }
