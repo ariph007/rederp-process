@@ -15,44 +15,46 @@
  * or via info@compiere.org or http://www.compiere.org/license.html           *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
-package com.rise.process;
+package com.rise.models;
 
 import java.sql.ResultSet;
 import java.util.Properties;
 import org.compiere.model.*;
 
-/** Generated Model for RED_Asset_Transfer
+/** Generated Model for RED_Asset_Transfer_Line
  *  @author iDempiere (generated) 
  *  @version Release 10 - $Id$ */
-@org.adempiere.base.Model(table="RED_Asset_Transfer")
-public class X_RED_Asset_Transfer extends PO implements I_RED_Asset_Transfer, I_Persistent 
+@org.adempiere.base.Model(table="RED_Asset_Transfer_Line")
+public class X_RED_Asset_Transfer_Line extends PO implements I_RED_Asset_Transfer_Line, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20230517L;
+	private static final long serialVersionUID = 20230522L;
 
     /** Standard Constructor */
-    public X_RED_Asset_Transfer (Properties ctx, int RED_Asset_Transfer_ID, String trxName)
+    public X_RED_Asset_Transfer_Line (Properties ctx, int RED_Asset_Transfer_Line_ID, String trxName)
     {
-      super (ctx, RED_Asset_Transfer_ID, trxName);
-      /** if (RED_Asset_Transfer_ID == 0)
+      super (ctx, RED_Asset_Transfer_Line_ID, trxName);
+      /** if (RED_Asset_Transfer_Line_ID == 0)
         {
+			setRED_Asset_Transfer_Line_ID (0);
         } */
     }
 
     /** Standard Constructor */
-    public X_RED_Asset_Transfer (Properties ctx, int RED_Asset_Transfer_ID, String trxName, String ... virtualColumns)
+    public X_RED_Asset_Transfer_Line (Properties ctx, int RED_Asset_Transfer_Line_ID, String trxName, String ... virtualColumns)
     {
-      super (ctx, RED_Asset_Transfer_ID, trxName, virtualColumns);
-      /** if (RED_Asset_Transfer_ID == 0)
+      super (ctx, RED_Asset_Transfer_Line_ID, trxName, virtualColumns);
+      /** if (RED_Asset_Transfer_Line_ID == 0)
         {
+			setRED_Asset_Transfer_Line_ID (0);
         } */
     }
 
     /** Load Constructor */
-    public X_RED_Asset_Transfer (Properties ctx, ResultSet rs, String trxName)
+    public X_RED_Asset_Transfer_Line (Properties ctx, ResultSet rs, String trxName)
     {
       super (ctx, rs, trxName);
     }
@@ -74,7 +76,7 @@ public class X_RED_Asset_Transfer extends PO implements I_RED_Asset_Transfer, I_
 
     public String toString()
     {
-      StringBuilder sb = new StringBuilder ("X_RED_Asset_Transfer[")
+      StringBuilder sb = new StringBuilder ("X_RED_Asset_Transfer_Line[")
         .append(get_ID()).append("]");
       return sb.toString();
     }
@@ -107,51 +109,36 @@ public class X_RED_Asset_Transfer extends PO implements I_RED_Asset_Transfer, I_
 		return ii.intValue();
 	}
 
-	/** DocAction AD_Reference_ID=135 */
-	public static final int DOCACTION_AD_Reference_ID=135;
-	/** &lt;None&gt; = -- */
-	public static final String DOCACTION_None = "--";
-	/** Approve = AP */
-	public static final String DOCACTION_Approve = "AP";
-	/** Close = CL */
-	public static final String DOCACTION_Close = "CL";
-	/** Complete = CO */
-	public static final String DOCACTION_Complete = "CO";
-	/** Invalidate = IN */
-	public static final String DOCACTION_Invalidate = "IN";
-	/** Post = PO */
-	public static final String DOCACTION_Post = "PO";
-	/** Prepare = PR */
-	public static final String DOCACTION_Prepare = "PR";
-	/** Reverse - Accrual = RA */
-	public static final String DOCACTION_Reverse_Accrual = "RA";
-	/** Reverse - Correct = RC */
-	public static final String DOCACTION_Reverse_Correct = "RC";
-	/** Re-activate = RE */
-	public static final String DOCACTION_Re_Activate = "RE";
-	/** Reject = RJ */
-	public static final String DOCACTION_Reject = "RJ";
-	/** Void = VO */
-	public static final String DOCACTION_Void = "VO";
-	/** Wait Complete = WC */
-	public static final String DOCACTION_WaitComplete = "WC";
-	/** Unlock = XL */
-	public static final String DOCACTION_Unlock = "XL";
-	/** Set Document Action.
-		@param DocAction The targeted status of the document
+	/** Set Description.
+		@param Description Optional short description of the record
 	*/
-	public void setDocAction (String DocAction)
+	public void setDescription (String Description)
 	{
-
-		set_Value (COLUMNNAME_DocAction, DocAction);
+		set_Value (COLUMNNAME_Description, Description);
 	}
 
-	/** Get Document Action.
-		@return The targeted status of the document
+	/** Get Description.
+		@return Optional short description of the record
 	  */
-	public String getDocAction()
+	public String getDescription()
 	{
-		return (String)get_Value(COLUMNNAME_DocAction);
+		return (String)get_Value(COLUMNNAME_Description);
+	}
+
+	/** Set Comment/Help.
+		@param Help Comment or Hint
+	*/
+	public void setHelp (String Help)
+	{
+		set_Value (COLUMNNAME_Help, Help);
+	}
+
+	/** Get Comment/Help.
+		@return Comment or Hint
+	  */
+	public String getHelp()
+	{
+		return (String)get_Value(COLUMNNAME_Help);
 	}
 
 	public I_M_Locator getM_Locator() throws RuntimeException
@@ -210,27 +197,10 @@ public class X_RED_Asset_Transfer extends PO implements I_RED_Asset_Transfer, I_
 		return ii.intValue();
 	}
 
-	/** Set Processed.
-		@param Processed The document has been processed
-	*/
-	public void setProcessed (boolean Processed)
+	public I_RED_Asset_Transfer getRED_Asset_Transfer() throws RuntimeException
 	{
-		set_Value (COLUMNNAME_Processed, Boolean.valueOf(Processed));
-	}
-
-	/** Get Processed.
-		@return The document has been processed
-	  */
-	public boolean isProcessed()
-	{
-		Object oo = get_Value(COLUMNNAME_Processed);
-		if (oo != null) 
-		{
-			 if (oo instanceof Boolean) 
-				 return ((Boolean)oo).booleanValue(); 
-			return "Y".equals(oo);
-		}
-		return false;
+		return (I_RED_Asset_Transfer)MTable.get(getCtx(), I_RED_Asset_Transfer.Table_ID)
+			.getPO(getRED_Asset_Transfer_ID(), get_TrxName());
 	}
 
 	/** Set RED_Asset_Transfer_ID.
@@ -254,34 +224,39 @@ public class X_RED_Asset_Transfer extends PO implements I_RED_Asset_Transfer, I_
 		return ii.intValue();
 	}
 
-	/** Set RED_Asset_Transfer_UU.
-		@param RED_Asset_Transfer_UU RED_Asset_Transfer_UU
+	/** Set RED_Asset_Transfer_Line.
+		@param RED_Asset_Transfer_Line_ID RED_Asset_Transfer_Line
 	*/
-	public void setRED_Asset_Transfer_UU (String RED_Asset_Transfer_UU)
+	public void setRED_Asset_Transfer_Line_ID (int RED_Asset_Transfer_Line_ID)
 	{
-		set_ValueNoCheck (COLUMNNAME_RED_Asset_Transfer_UU, RED_Asset_Transfer_UU);
+		if (RED_Asset_Transfer_Line_ID < 1)
+			set_ValueNoCheck (COLUMNNAME_RED_Asset_Transfer_Line_ID, null);
+		else
+			set_ValueNoCheck (COLUMNNAME_RED_Asset_Transfer_Line_ID, Integer.valueOf(RED_Asset_Transfer_Line_ID));
 	}
 
-	/** Get RED_Asset_Transfer_UU.
-		@return RED_Asset_Transfer_UU	  */
-	public String getRED_Asset_Transfer_UU()
+	/** Get RED_Asset_Transfer_Line.
+		@return RED_Asset_Transfer_Line	  */
+	public int getRED_Asset_Transfer_Line_ID()
 	{
-		return (String)get_Value(COLUMNNAME_RED_Asset_Transfer_UU);
+		Integer ii = (Integer)get_Value(COLUMNNAME_RED_Asset_Transfer_Line_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
 	}
 
-	/** Set Search Key.
-		@param Value Search key for the record in the format required - must be unique
+	/** Set RED_Asset_Transfer_Line_UU.
+		@param RED_Asset_Transfer_Line_UU RED_Asset_Transfer_Line_UU
 	*/
-	public void setValue (String Value)
+	public void setRED_Asset_Transfer_Line_UU (String RED_Asset_Transfer_Line_UU)
 	{
-		set_Value (COLUMNNAME_Value, Value);
+		set_Value (COLUMNNAME_RED_Asset_Transfer_Line_UU, RED_Asset_Transfer_Line_UU);
 	}
 
-	/** Get Search Key.
-		@return Search key for the record in the format required - must be unique
-	  */
-	public String getValue()
+	/** Get RED_Asset_Transfer_Line_UU.
+		@return RED_Asset_Transfer_Line_UU	  */
+	public String getRED_Asset_Transfer_Line_UU()
 	{
-		return (String)get_Value(COLUMNNAME_Value);
+		return (String)get_Value(COLUMNNAME_RED_Asset_Transfer_Line_UU);
 	}
 }

@@ -14,25 +14,25 @@
  * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
  * or via info@compiere.org or http://www.compiere.org/license.html           *
  *****************************************************************************/
-package com.rise.process;
+package com.rise.models;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import org.compiere.model.*;
 import org.compiere.util.KeyNamePair;
 
-/** Generated Interface for RED_Asset_Transfer
+/** Generated Interface for RED_Asset_Transfer_Line
  *  @author iDempiere (generated) 
  *  @version Release 10
  */
 @SuppressWarnings("all")
-public interface I_RED_Asset_Transfer 
+public interface I_RED_Asset_Transfer_Line 
 {
 
-    /** TableName=RED_Asset_Transfer */
-    public static final String Table_Name = "RED_Asset_Transfer";
+    /** TableName=RED_Asset_Transfer_Line */
+    public static final String Table_Name = "RED_Asset_Transfer_Line";
 
-    /** AD_Table_ID=1000004 */
+    /** AD_Table_ID=1000005 */
     public static final int Table_ID = MTable.getTable_ID(Table_Name);
 
     KeyNamePair Model = new KeyNamePair(Table_ID, Table_Name);
@@ -95,18 +95,31 @@ public interface I_RED_Asset_Transfer
 	  */
 	public int getCreatedBy();
 
-    /** Column name DocAction */
-    public static final String COLUMNNAME_DocAction = "DocAction";
+    /** Column name Description */
+    public static final String COLUMNNAME_Description = "Description";
 
-	/** Set Document Action.
-	  * The targeted status of the document
+	/** Set Description.
+	  * Optional short description of the record
 	  */
-	public void setDocAction (String DocAction);
+	public void setDescription (String Description);
 
-	/** Get Document Action.
-	  * The targeted status of the document
+	/** Get Description.
+	  * Optional short description of the record
 	  */
-	public String getDocAction();
+	public String getDescription();
+
+    /** Column name Help */
+    public static final String COLUMNNAME_Help = "Help";
+
+	/** Set Comment/Help.
+	  * Comment or Hint
+	  */
+	public void setHelp (String Help);
+
+	/** Get Comment/Help.
+	  * Comment or Hint
+	  */
+	public String getHelp();
 
     /** Column name IsActive */
     public static final String COLUMNNAME_IsActive = "IsActive";
@@ -151,19 +164,6 @@ public interface I_RED_Asset_Transfer
 
 	public I_M_Locator getM_LocatorTo() throws RuntimeException;
 
-    /** Column name Processed */
-    public static final String COLUMNNAME_Processed = "Processed";
-
-	/** Set Processed.
-	  * The document has been processed
-	  */
-	public void setProcessed (boolean Processed);
-
-	/** Get Processed.
-	  * The document has been processed
-	  */
-	public boolean isProcessed();
-
     /** Column name RED_Asset_Transfer_ID */
     public static final String COLUMNNAME_RED_Asset_Transfer_ID = "RED_Asset_Transfer_ID";
 
@@ -173,14 +173,25 @@ public interface I_RED_Asset_Transfer
 	/** Get RED_Asset_Transfer_ID	  */
 	public int getRED_Asset_Transfer_ID();
 
-    /** Column name RED_Asset_Transfer_UU */
-    public static final String COLUMNNAME_RED_Asset_Transfer_UU = "RED_Asset_Transfer_UU";
+	public I_RED_Asset_Transfer getRED_Asset_Transfer() throws RuntimeException;
 
-	/** Set RED_Asset_Transfer_UU	  */
-	public void setRED_Asset_Transfer_UU (String RED_Asset_Transfer_UU);
+    /** Column name RED_Asset_Transfer_Line_ID */
+    public static final String COLUMNNAME_RED_Asset_Transfer_Line_ID = "RED_Asset_Transfer_Line_ID";
 
-	/** Get RED_Asset_Transfer_UU	  */
-	public String getRED_Asset_Transfer_UU();
+	/** Set RED_Asset_Transfer_Line	  */
+	public void setRED_Asset_Transfer_Line_ID (int RED_Asset_Transfer_Line_ID);
+
+	/** Get RED_Asset_Transfer_Line	  */
+	public int getRED_Asset_Transfer_Line_ID();
+
+    /** Column name RED_Asset_Transfer_Line_UU */
+    public static final String COLUMNNAME_RED_Asset_Transfer_Line_UU = "RED_Asset_Transfer_Line_UU";
+
+	/** Set RED_Asset_Transfer_Line_UU	  */
+	public void setRED_Asset_Transfer_Line_UU (String RED_Asset_Transfer_Line_UU);
+
+	/** Get RED_Asset_Transfer_Line_UU	  */
+	public String getRED_Asset_Transfer_Line_UU();
 
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";
@@ -197,17 +208,4 @@ public interface I_RED_Asset_Transfer
 	  * User who updated this records
 	  */
 	public int getUpdatedBy();
-
-    /** Column name Value */
-    public static final String COLUMNNAME_Value = "Value";
-
-	/** Set Search Key.
-	  * Search key for the record in the format required - must be unique
-	  */
-	public void setValue (String Value);
-
-	/** Get Search Key.
-	  * Search key for the record in the format required - must be unique
-	  */
-	public String getValue();
 }
