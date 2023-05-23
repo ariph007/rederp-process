@@ -49,7 +49,7 @@ public class AssetTransfer extends SvrProcess{
 //		transfer.setM_Locator_ID(p_M_Locator_ID);
 //		transfer.setM_LocatorTo_ID(p_M_LocatorTo_ID);
 //		transfer.saveEx();
-		
+//		
 		
 		MAsset asset = new MAsset(null, p_A_Asset_ID, null);
 		final String assetName = asset.getName();
