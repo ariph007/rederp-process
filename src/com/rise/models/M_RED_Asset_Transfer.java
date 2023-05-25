@@ -2,12 +2,14 @@ package com.rise.models;
 
 import java.io.File;
 import java.math.BigDecimal;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Properties;
 
 import org.compiere.process.DocAction;
 import org.compiere.process.DocOptions;
 import org.compiere.process.DocumentEngine;
+import org.compiere.util.DB;
 
 @SuppressWarnings("serial")
 public class M_RED_Asset_Transfer extends X_RED_Asset_Transfer implements DocAction, DocOptions{
@@ -24,8 +26,8 @@ public class M_RED_Asset_Transfer extends X_RED_Asset_Transfer implements DocAct
 
 	@Override
 	public boolean processIt(String action) throws Exception {
-		log.warning("Process action = " + action + " -DocStatus = " + getDocStatus() + " - DocAction " + getDocAction());
-		DocumentEngine engine = new DocumentEngine(this, getDocAction());
+		log.warning("Processing Action=" + action + " - DocStatus=" + getDocStatus() + " - DocAction=" + getDocAction());
+		DocumentEngine engine = new DocumentEngine(this, getDocStatus());
 		
 		return engine.processIt(action, getDocAction());
 	}
@@ -44,6 +46,32 @@ public class M_RED_Asset_Transfer extends X_RED_Asset_Transfer implements DocAct
 
 	@Override
 	public String prepareIt() {
+//		String tableName = M_RED_Asset_Transfer.Table_Name;
+//		StringBuffer sql = new StringBuffer("SELECT * FROM ").append(tableName)
+//				.append("where red_asset_transfer_id =")
+//				.append(getRED_Asset_Transfer_ID());
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		
+//		try {
+//			pstmt = DB.prepareStatement(sql.toString(), get_TrxName());
+//			rs = pstmt.executeQuery();
+//			if(rs.next()) {
+//				log.severe("Ada Transfer Line");
+//				System.out.println("Ada Transfer Line");
+//			}else {
+//				log.severe("Tidak Ada Transfer Line");
+//				System.out.println("Tidak Ada Transfer Line");
+//			}
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}finally {
+//			DB.close(rs, pstmt);
+//			rs = null;
+//			pstmt = null;
+//		}
+		
+		
 		setC_DocType_ID(getC_DocType_ID());
 		return DocAction.STATUS_InProgress;
 	}
