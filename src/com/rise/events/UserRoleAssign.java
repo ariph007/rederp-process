@@ -1,7 +1,10 @@
 package com.rise.events;
 
+import java.util.Properties;
+
 import org.adempiere.base.event.AbstractEventHandler;
 import org.adempiere.base.event.IEventTopics;
+import org.adempiere.model.POWrapper;
 import org.compiere.model.I_AD_User;
 import org.compiere.model.MRole;
 import org.compiere.model.MUser;
@@ -13,26 +16,21 @@ import org.osgi.service.event.Event;
 
 public class UserRoleAssign extends AbstractEventHandler{
 	private static CLogger log = CLogger.getCLogger(AbstractEventHandler.class);
-
+	private static final  int GARDENWORLD_USER_ROLE = 103;
+	
 	@Override
 	protected void doHandleEvent(Event event) {
-		if (event.getTopic().equals(IEventTopics.PO_AFTER_NEW)) {
             PO po = getPO(event);
-            if (po.get_TableName().equals(MUser.Table_Name)) {
-                int userIdCreated = Integer.parseInt(po.get_Value(I_AD_User.COLUMNNAME_AD_User_ID).toString());
-                MUser user = MUser.get(Env.getCtx(), userIdCreated);
-                if (user != null) {
-                    MUserRoles userRole = new MUserRoles(Env.getCtx(), 0, null);
-                    userRole.setAD_User_ID(userIdCreated);
-                    userRole.setAD_Role_ID(MRole.getDefault().getAD_Role_ID());
-                    userRole.saveEx();
-                } else {
-                    log.warning("AD_User not found for AD_User_ID: " + userIdCreated);
-                }
+            
+            if (po instanceof MUser) {
+                MUser user = (MUser) po;
+                MUserRoles userRole = new MUserRoles(Env.getCtx(), 0, user.get_TrxName());
+                userRole.setAD_User_ID(user.getAD_User_ID());
+                userRole.setAD_Role_ID(GARDENWORLD_USER_ROLE);
+                userRole.saveEx();
             }
-        }
 	}
-
+	
 	@Override
 	protected void initialize() {
 		registerTableEvent(IEventTopics.PO_AFTER_NEW, MUser.Table_Name);
